@@ -1,0 +1,17 @@
+{
+  "name": "snapstone-server",
+  "version": "0.0.1",
+  "description": "Server Side of the Snapstone Project (https://github.com/sotch-pr35mac/snapstone)",
+  "repository": "https://github.com/sotch-pr35mac/snapstone-server",
+  "main": "index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "OCR",
+    "node",
+    "server",
+    "endpoint"
+  ],
+  "author": "Preston Wang-Stosur-Bassett, Danny Michelin, Alex Cardigan, Lionel Niyongabire",
+  "license": "GPL-3.0"
+}
