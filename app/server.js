@@ -24,5 +24,5 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
- res.send('you are viewing the homepage.');
+  res.send('you are viewing the homepage.');
 });
