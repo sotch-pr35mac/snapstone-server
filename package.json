@@ -2,9 +2,13 @@
   "name": "snapstone-server",
   "version": "0.0.1",
   "description": "Server Side of the Snapstone Project (https://github.com/sotch-pr35mac/snapstone)",
+  "readme": "README.MD",
   "repository": "https://github.com/sotch-pr35mac/snapstone-server",
-  "main": "index.js",
+  "main": "app/server.js",
   "scripts": {
+    "dev": "nodemon server.js",
+    "lint": "./node_modules/.bin/eslint ./app/*.js ./app/*/*.js",
+    "validate": "npm ls"
   },
   "keywords": [
     "OCR",
@@ -13,5 +17,18 @@
     "endpoint"
   ],
   "author": "Preston Wang-Stosur-Bassett, Danny Michelin, Alex Cardigan, Lionel Niyongabire",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "nodemon": "^1.12.1",
+    "precommit-hook-eslint": "^3.0.0"
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }
