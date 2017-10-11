@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "lint": "./node_modules/.bin/eslint ./app/*.js ./app/*/*.js",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "start": "node app/server.js"
   },
   "keywords": [
     "OCR",
