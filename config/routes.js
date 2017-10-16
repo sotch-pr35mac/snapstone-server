@@ -40,6 +40,10 @@ module.exports.routes = {
   'GET /test': {
     controller: 'auth',
     action: 'test'
+  },
+  'POST /process/photo': {
+    controller : 'photo',
+    action: 'process'
   }
 
   /***************************************************************************
