@@ -11,6 +11,7 @@ Snapstone Server is the server for [Snapstone](https://github.com/sotch-pr35mac/
   - [Node.js](https://nodejs.org/en/)
   - [Express.js](https://expressjs.com/)
   - [MongoDB](https://www.mongodb.com/)
+  - [Sail.js](http://sailsjs.com/)
 
 ### Getting Started
 1. [Install Node.js and `npm`](https://nodejs.org/en/) if you haven't already.
