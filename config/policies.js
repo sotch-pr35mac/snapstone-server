@@ -15,7 +15,7 @@
  * For more information on configuring policies, check out:
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.policies.html
  */
-
+var passport = require('passport');
 
 module.exports.policies = {
 
@@ -25,9 +25,22 @@ module.exports.policies = {
   * access)                                                                  *
   *                                                                          *
   ***************************************************************************/
+  '*': [
+        // Initialize Passport
+        passport.initialize(),
 
+        // Use Passport's built-in sessions
+        passport.session()
+    ],
   'user': {
-    '*': 'isAuthenticated'
+    '*': [
+          // Initialize Passport
+          passport.initialize(),
+
+          // Use Passport's built-in sessions
+          passport.session(),
+	  'isAuthenticated'
+         ]
   },
 
   'photo': {

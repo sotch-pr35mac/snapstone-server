@@ -51,7 +51,6 @@ passport.deserializeUser(function(id, done) {
 // Use the Local Strategy within Passport
 // Strategies in passport require a verify function, which accepts crednetials
 // in this case a username and password, and invoke a callback with a user object
-
 passport.use(new LocalStrategy(function(username, password, done) {
   process.nextTick(function() {
     // Find the user by username. If there is no user with the given username

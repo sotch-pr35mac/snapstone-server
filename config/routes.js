@@ -32,9 +32,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /create/user': {
+  'POST /user/create': {
     controller: 'auth',
     action: 'create'
+  },
+    
+    'POST /user/login': {
+    controller: 'auth',
+    action: 'login'
   },
 
   'GET /test': {
