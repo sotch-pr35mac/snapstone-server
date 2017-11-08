@@ -14,7 +14,11 @@ module.exports = {
   console.log('it works!');
   req.file('photo').upload(function(err, uploadedFiles){
       if(uploadedFiles.length < 1) {
-
+        console.log("No image uploaded");
+        res.send({
+          status: 500,
+          message: "There was an error becuase you didn't upload an image...."
+        });
       } else {
         console.log(uploadedFiles);
         var photo = uploadedFiles[0].fd;
