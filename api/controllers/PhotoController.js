@@ -19,7 +19,7 @@ module.exports = {
       .progress(function  (p) { console.log('progress', p)})
       .then(function (result) {
         var resultToSendToUser = {confidence: result.confidence,text: result.text};
-        console.log(resultToSendToUser);
+        res.send(resultToSendToUser);
         });
     });
   }
