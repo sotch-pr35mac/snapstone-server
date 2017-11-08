@@ -20,6 +20,7 @@ module.exports = {
       .then(function (result) {
         var resultToSendToUser = {confidence: result.confidence,text: result.text};
         console.log(resultToSendToUser);
+        res.send("yooo....");
         });
     });
   }
