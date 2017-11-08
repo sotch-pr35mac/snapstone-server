@@ -18,6 +18,7 @@ module.exports = {
       } else {
         console.log(uploadedFiles);
         var photo = uploadedFiles[0].fd;
+        console.log(photo);
         Tesseract.create({langPath:eng}).recognize(photo)
           .progress(function  (p) { console.log('progress', p)})
           .then(function (result) {
