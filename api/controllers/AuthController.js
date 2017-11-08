@@ -16,7 +16,8 @@ module.exports = {
       if(err || !user) {
         console.log('user = ' + user);
         console.log('error = ' + err);
-        console.log('info = ' + info);
+        console.log('info: ');
+        console.log(info);
         res.send({
           success: false,
           status: 401,
