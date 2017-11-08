@@ -13,15 +13,19 @@ module.exports = {
   process: function(req, res) {
   console.log('it works!');
   req.file('photo').upload(function(err, uploadedFiles){
-    console.log(uploadedFiles);
-    var photo = uploadedFiles[0].fd;
-    Tesseract.create({langPath:eng}).recognize(photo)
-      .progress(function  (p) { console.log('progress', p)})
-      .then(function (result) {
-        var resultToSendToUser = {confidence: result.confidence,text: result.text};
-        console.log(resultToSendToUser);
-        res.send(resultToSendToUser);
-        });
+      if(uploadedFiles.length < 1) {
+
+      } else {
+        console.log(uploadedFiles);
+        var photo = uploadedFiles[0].fd;
+        Tesseract.create({langPath:eng}).recognize(photo)
+          .progress(function  (p) { console.log('progress', p)})
+          .then(function (result) {
+            var resultToSendToUser = {confidence: result.confidence,text: result.text};
+            console.log(resultToSendToUser);
+            res.send(resultToSendToUser);
+          });
+      }
     });
   }
 };
