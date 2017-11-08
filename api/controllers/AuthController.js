@@ -89,6 +89,8 @@ module.exports = {
         });
       } else {
         console.log('New User Account Created!');
+        console.log("Here is the user object for the newly created user:");
+        console.log(user);
         res.send({
           success: true,
           status: 200,
