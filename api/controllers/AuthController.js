@@ -96,5 +96,16 @@ module.exports = {
         });
       }
     });
+  },
+
+  test: function(req, res) {
+    User.find().exec(function(err, users) {
+      if(err) {
+        console.log("There was an error.");
+        console.log(err);
+      } else {
+        console.log(users);
+      }
+    });
   }
 };
