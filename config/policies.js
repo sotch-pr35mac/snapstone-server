@@ -47,6 +47,10 @@ module.exports.policies = {
     '*': 'isAuthenticated'
   },
 
+  'bookmarks': {
+    '*': 'isAuthenticated'
+  },
+
   'auth': true
 
   /***************************************************************************

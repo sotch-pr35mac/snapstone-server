@@ -36,7 +36,7 @@ module.exports.routes = {
     controller: 'auth',
     action: 'create'
   },
-    
+
     'POST /user/login': {
     controller: 'auth',
     action: 'login'
@@ -49,6 +49,21 @@ module.exports.routes = {
   'POST /process/photo': {
     controller : 'photo',
     action: 'process'
+  },
+
+  'GET /bookmarks': {
+    controller: 'bookmarks',
+    action: 'get'
+  },
+
+  'POST /bookmarks/add': {
+    controller: 'bookmarks',
+    action: 'add'
+  },
+
+  'POST /bookmarks/remove': {
+    controller: 'bookmarks',
+    action: 'remove'
   }
 
   /***************************************************************************
