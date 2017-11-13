@@ -28,6 +28,20 @@ module.exports = {
       type: 'string'
     },
 
+    bookmarks: {
+      type: 'array',
+      defaultsTo: []
+      /*
+       * The array will be an array of objects in the following format:
+        {
+          traditional: String,
+          simplified: String,
+          pinyin: String.
+          definitions: ['', '', ''] --> An array of Strings
+        }
+      */
+    },
+
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
