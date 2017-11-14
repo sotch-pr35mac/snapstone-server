@@ -72,6 +72,9 @@ module.exports = {
   create: function(req, res) {
     var newUser = req.body;
 
+    console.log("Here is the new user object, before the new user is created.");
+    console.log(newUser);
+
     User.create({
       username: newUser.username,
       password: newUser.password,
