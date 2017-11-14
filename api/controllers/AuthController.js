@@ -16,7 +16,8 @@ module.exports = {
       if(err || !user) {
         console.log('user = ' + user);
         console.log('error = ' + err);
-        console.log('info = ' + info);
+        console.log('info: ');
+        console.log(info);
         res.send({
           success: false,
           status: 401,
@@ -88,11 +89,24 @@ module.exports = {
         });
       } else {
         console.log('New User Account Created!');
+        console.log("Here is the user object for the newly created user:");
+        console.log(user);
         res.send({
           success: true,
           status: 200,
           message: 'New user account successfully created!'
         });
+      }
+    });
+  },
+
+  test: function(req, res) {
+    User.find().exec(function(err, users) {
+      if(err) {
+        console.log("There was an error.");
+        console.log(err);
+      } else {
+        console.log(users);
       }
     });
   }
