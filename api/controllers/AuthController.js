@@ -11,7 +11,6 @@ var passport = require('passport');
 
 module.exports = {
   login: function(req, res) {
-    // var user = req.body;
     passport.authenticate('local', function(err, user, info) {
       if(err || !user) {
         console.log('user = ' + user);
@@ -72,9 +71,6 @@ module.exports = {
   create: function(req, res) {
     var newUser = req.body;
 
-    console.log("Here is the new user object, before the new user is created.");
-    console.log(newUser);
-
     User.create({
       username: newUser.username,
       password: newUser.password,
@@ -93,6 +89,7 @@ module.exports = {
       } else {
         console.log('New User Account Created!');
         console.log("Here is the user object for the newly created user:");
+        user.password = "Nice try ;-)";
         console.log(user);
         res.send({
           success: true,
