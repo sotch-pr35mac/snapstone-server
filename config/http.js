@@ -22,7 +22,7 @@ module.exports.http = {
   ****************************************************************************/
 
   middleware: {
-    
+
     passportInit: require('passport').initialize(),
     passportSession: require('passport').session(),
 
@@ -52,11 +52,10 @@ module.exports.http = {
        '404',
        '500'
      ],
-    
+
     customMiddleware: function(app) {
       app.use(passport.initialize());
       app.use(passport.session());
-      
     }
 
   /****************************************************************************

@@ -12,48 +12,40 @@ var fs = require('fs');
 
 module.exports = {
     process: function(req, res) {
-      var outDir = __dirname + '/uploads';
-
-      try {
-        var Throttle = require('stream-throttle').Throttle;
-        var filename = req.headers['file-name'];
-
-        // This is the actual file that comes up from the upload process
-        var out = outDir + filename;
-
-        var total = req.headers['content-length'];
-        var current = 0;
-
-        // Pipe the stream through the throttle and then write it to a file
-        req.pipe(new Throttle({ rate: 1024 * 2048 })).pipe(fs.createWriteStream(out, { flags: 'w', encoding: null, fd: null, mode: 0666 }));
-
-        req.on('end', function() {
-          // TODO: open file
-          var photo = fromFile;
+      req.file('photo').upload({
+        dirname: '../../assets/uploads'
+      }, function onUploadComplete(err, files) {
+        console.log(files);
+        if(err) {
+          console.log(err);
+          return res.json(500, err);
+        } else if(files.length == 0) {
+          console.log("File didn't exist in upload.");
+          res.notFound({
+            status: 'Unsuccess',
+            response: 'File not uploaded'
+          });
+        } else {
+          console.log("It totally worked! File uploaded");
+          var photo = files[0].fd;
 
           Tesseract.create({
             langPath: eng
           }).recognize(photo).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
-            var resultToSend = {
+            var resultToSendToUser = {
               confidence: result.confidence,
               text: result.text
             };
 
-            res.send(resultToSend);
-          });
-        });
-      }
-      catch(err) {
-        console.log('There was an error uploading the file.');
-        console.log(err);
+            console.log(resultToSendToUser);
 
-        res.send({
-          status: 500,
-          message: 'An unexpected error occurred.',
-          error: new Error('An unexpected error occurred. Error = ' + err)
-        });
-      }
+            fs.unlink(photo);
+
+            res.send(resultToSendToUser);
+          });
+        }
+      });
     }
 };
