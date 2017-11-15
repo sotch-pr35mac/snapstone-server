@@ -10,7 +10,7 @@ var path = require('path');
 var eng = path.resolve(__dirname, 'eng.traineddata');
 var fs = require('fs');
 var Dictionary = require('./Dictionary/Dictionary.js');
-//var dictionary = new Dictionary();
+var dictionary = new Dictionary();
 
 module.exports = {
     process: function(req, res) {
@@ -36,16 +36,25 @@ module.exports = {
           }).recognize(photo).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
-            var resultToSendToUser = {
+            var resultFromPhoto = {
               confidence: result.confidence,
               text: result.text
             };
 
-            console.log(resultToSendToUser);
+            console.log(resultFromPhoto);
 
             fs.unlink(photo);
 
-            res.send(resultToSendToUser);
+            // TODO: Upload the script preference from the client side
+            // Uncomment the below code to search the dictionary to return the results to the user
+            // `scriptSetting` is either "traditional" or "simplified", the search preference, which should be sent up from the client side
+            /*dictionary.search(scriptSetting, resultFromPhoto, function(resultToSend) {
+              console.log(resultToSend);
+              res.send(resultToSend);
+            });*/
+
+            // TODO: Remove the below line when the above code is uncommented, so that only one result is sent back to the user
+            res.send(resultsFromPhoto);
           });
         }
       });
