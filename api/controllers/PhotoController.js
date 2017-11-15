@@ -9,6 +9,8 @@ const Tesseract = require('tesseract.js');
 var path = require('path');
 var eng = path.resolve(__dirname, 'eng.traineddata');
 var fs = require('fs');
+var Dictionary = require('./Dictionary/Dictionary.js');
+//var dictionary = new Dictionary();
 
 module.exports = {
     process: function(req, res) {

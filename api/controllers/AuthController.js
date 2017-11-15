@@ -8,6 +8,8 @@
 
 // Require Depenedencies
 var passport = require('passport');
+var Dictionary = require('./Dictionary/Dictionary.js');
+var dictionary = new Dictionary();
 
 module.exports = {
   login: function(req, res) {
@@ -101,13 +103,27 @@ module.exports = {
   },
 
   test: function(req, res) {
-    User.find().exec(function(err, users) {
-      if(err) {
-        console.log("There was an error.");
-        console.log(err);
-      } else {
-        console.log(users);
-      }
-    });
+    console.log("About to make the search.");
+   dictionary.search("traditional", "你好", function(result) {
+     console.log("search complete");
+    console.log(result);
+    console.log(result[0][0].definitions);
+   });
+
+   console.log("Performing edge case search: ");
+   dictionary.search("traditional", "asdf", function(result) {
+    console.log("search complete");
+    console.log(result);
+   });
+
+   dictionary.search("simplified", "你好. 我是个学生. 我觉得学汉语挺有意思! 但是, 明天我不会上课因为我有别的事.", function(result) {
+    console.log("this one is just for fun: ");
+    var fullString = "";
+    for(var i = 0; i < result.length; i++) {
+      fullString += result[i][0].definitions[0];
+      fullString += " ";
+    }
+    console.log(fullString);
+   });
   }
 };
