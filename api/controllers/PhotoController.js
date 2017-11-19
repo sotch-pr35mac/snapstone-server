@@ -54,7 +54,7 @@ module.exports = {
             });*/
 
             // TODO: Remove the below line when the above code is uncommented, so that only one result is sent back to the user
-            res.send(resultsFromPhoto);
+            res.send(resultFromPhoto);
           });
         }
       });
