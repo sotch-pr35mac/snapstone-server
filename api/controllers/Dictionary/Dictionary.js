@@ -144,6 +144,20 @@ class Dictionary {
            });
        }
     }
+
+    translate(script, text, callback) {
+        var self = this;
+
+        // Call the search method
+        self.search(script, text, function(results) {
+            var fullString = "";
+            for(var i = 0; i < results.length; i++) {
+                fullString += results[i][0].definitions[0];
+            }
+
+            callback(fullString);
+        });
+    }
 }
 
 // Add the class to module.exports so it can be accessed elsewhere as a library

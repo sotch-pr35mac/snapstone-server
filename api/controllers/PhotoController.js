@@ -119,7 +119,7 @@ module.exports = {
           fs.unlink(photoFile);
 
           // TODO: Do other stuff like search here
-          dictionary.search('simplified', text, function(resToSend) {
+          dictionary.translate('simplified', text, function(resToSend) {
             console.log("Search Results: ");
             console.log(resToSend);
             res.send(resToSend);
