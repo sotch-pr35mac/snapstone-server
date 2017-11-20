@@ -15,12 +15,12 @@ var dictionary = new Dictionary();
 
 module.exports = {
     process: function(req, res) {
+      console.log("HERE ARE THE HEADERS");
+      console.log(req.headers);
       var langPref = req.headers.lang;
-      var langPath;
-      if(langPref == "simplified") {
-        langPath = simp;
-      } else if(langPref == "traditional") {
-        langPath = trad;
+
+      if(langPref == undefined) {
+        langPref = "simplified";
       }
 
       req.file('photo').upload({
