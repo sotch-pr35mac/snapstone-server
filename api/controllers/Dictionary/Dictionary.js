@@ -150,6 +150,9 @@ class Dictionary {
 
         // Call the search method
         self.search(script, text, function(results) {
+            console.log("Here are the actual search results: ");
+            console.log(results);
+            
             var fullString = "";
             for(var i = 0; i < results.length; i++) {
                 fullString += results[i][0].definitions[0];
