@@ -20,6 +20,7 @@ module.exports = {
       var langPref = req.headers.lang;
 
       if(langPref == undefined) {
+        console.log("NO LANGUAGE PROVIDED. DEFAULTING TO SIMPLIFIED");
         langPref = "simplified";
       }
 
@@ -41,7 +42,7 @@ module.exports = {
           var photo = files[0].fd;
 
           Tesseract.create({
-            langPath:  __dirname
+            langPath:  path.resolve(__dirname)
           }).recognize(photo, {
             lang: "chi_"+ langPref.substring(3)
           }).progress(function(p) {
