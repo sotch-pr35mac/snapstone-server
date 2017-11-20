@@ -11,6 +11,7 @@ var eng = path.resolve(__dirname, 'eng.traineddata');
 var fs = require('fs');
 var Dictionary = require('./Dictionary/Dictionary.js');
 var dictionary = new Dictionary();
+var tesseract = Tesseract.create({ langPath: eng });
 
 module.exports = {
     process: function(req, res) {
@@ -31,9 +32,7 @@ module.exports = {
           console.log("It totally worked! File uploaded");
           var photo = files[0].fd;
 
-          Tesseract.create({
-            langPath: eng
-          }).recognize(photo).progress(function(p) {
+         tesseract.recognize(photo, 'chi_sim').progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
             var resultFromPhoto = {
