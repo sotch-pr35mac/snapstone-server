@@ -7,13 +7,22 @@
  */
 const Tesseract = require('tesseract.js');
 var path = require('path');
-var eng = path.resolve(__dirname, 'eng.traineddata');
+var trad = path.resolve(__dirname, 'chi_sim.traineddata');
+var simp = path.resolve(__dirname, 'chi_sim.traineddata');
 var fs = require('fs');
 var Dictionary = require('./Dictionary/Dictionary.js');
 var dictionary = new Dictionary();
 
 module.exports = {
     process: function(req, res) {
+      var langPref = req.headers.lang;
+      var langPath;
+      if(langPref == "simplified") {
+        langPath = simp;
+      } else if(langPref == "traditional") {
+        langPath = trad;
+      }
+
       req.file('photo').upload({
         dirname: '../../assets/uploads'
       }, function onUploadComplete(err, files) {
@@ -32,7 +41,7 @@ module.exports = {
           var photo = files[0].fd;
 
           Tesseract.create({
-            langPath: eng
+            langPath: langPath
           }).recognize(photo).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
@@ -45,16 +54,10 @@ module.exports = {
 
             fs.unlink(photo);
 
-            // TODO: Upload the script preference from the client side
-            // Uncomment the below code to search the dictionary to return the results to the user
-            // `scriptSetting` is either "traditional" or "simplified", the search preference, which should be sent up from the client side
-            /*dictionary.search(scriptSetting, resultFromPhoto, function(resultToSend) {
+            dictionary.search(langPref, resultFromPhoto, function(resultToSend) {
               console.log(resultToSend);
               res.send(resultToSend);
-            });*/
-
-            // TODO: Remove the below line when the above code is uncommented, so that only one result is sent back to the user
-            res.send(resultFromPhoto);
+            });
           });
         }
       });
