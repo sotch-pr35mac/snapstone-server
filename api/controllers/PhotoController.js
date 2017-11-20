@@ -24,7 +24,7 @@ module.exports = {
         langPref = "simplified";
       }
 
-      var langPath = path.resolve(__dirname, 'chi_' + langPref.substring(3) + '.traineddata');
+      var langPath = path.resolve(__dirname, 'chi_' + langPref.substring(0, 3) + '.traineddata');
       console.log("THIS IS THE FILE WE ARE TRYING TO LOAD: " + langPath);
 
       req.file('photo').upload({
@@ -46,7 +46,7 @@ module.exports = {
 
           Tesseract.create({
             langPath:  langPath
-          }).recognize(photo, 'chi_' + langPref.substring(3)).progress(function(p) {
+          }).recognize(photo, 'chi_' + langPref.substring(0, 3)).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
             var resultFromPhoto = {
