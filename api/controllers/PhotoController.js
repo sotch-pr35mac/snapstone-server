@@ -43,9 +43,7 @@ module.exports = {
 
           Tesseract.create({
             langPath:  path.resolve(__dirname, 'chi_' + langPref.substring(3) + '.traineddata')
-          }).recognize(photo, {
-            lang: "chi_"+ langPref.substring(3)
-          }).progress(function(p) {
+          }).recognize(photo, 'chi_' + langPref.substring(3)).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
             var resultFromPhoto = {
