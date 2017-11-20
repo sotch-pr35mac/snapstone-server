@@ -5,6 +5,7 @@
   "description": "Servide Side of the Snapstone Project (https://github.com/sotch-pr35mac/snapstone)",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "canvas": "^1.6.7",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-coffee": "1.0.0",
