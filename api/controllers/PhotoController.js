@@ -54,7 +54,7 @@ module.exports = {
 
             fs.unlink(photo);
 
-            dictionary.search(langPref, resultFromPhoto, function(resultToSend) {
+            dictionary.search(langPref, resultFromPhoto.text, function(resultToSend) {
               console.log(resultToSend);
               res.send(resultToSend);
             });

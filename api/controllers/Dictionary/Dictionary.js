@@ -130,8 +130,6 @@ class Dictionary {
        }
        
        // Remove all special characters, whitespace, and newline, that would break the search
-       console.log("THIS IS TEXT: ");
-       console.log(text);
        text = text.trim();
        text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
        text.replace(' ', '');
