@@ -7,11 +7,22 @@
  */
 const Tesseract = require('tesseract.js');
 var path = require('path');
-var eng = path.resolve(__dirname, 'eng.traineddata');
+var trad = path.resolve(__dirname, 'chi_sim.traineddata');
+var simp = path.resolve(__dirname, 'chi_sim.traineddata');
 var fs = require('fs');
+var Dictionary = require('./Dictionary/Dictionary.js');
+var dictionary = new Dictionary();
 
 module.exports = {
     process: function(req, res) {
+      var langPref = req.headers.lang;
+      var langPath;
+      if(langPref == "simplified") {
+        langPath = simp;
+      } else if(langPref == "traditional") {
+        langPath = trad;
+      }
+
       req.file('photo').upload({
         dirname: '../../assets/uploads'
       }, function onUploadComplete(err, files) {
@@ -30,20 +41,23 @@ module.exports = {
           var photo = files[0].fd;
 
           Tesseract.create({
-            langPath: eng
+            langPath: langPath
           }).recognize(photo).progress(function(p) {
             console.log('progress', p);
           }).then(function(result) {
-            var resultToSendToUser = {
+            var resultFromPhoto = {
               confidence: result.confidence,
               text: result.text
             };
 
-            console.log(resultToSendToUser);
+            console.log(resultFromPhoto);
 
             fs.unlink(photo);
 
-            res.send(resultToSendToUser);
+            dictionary.search(langPref, resultFromPhoto, function(resultToSend) {
+              console.log(resultToSend);
+              res.send(resultToSend);
+            });
           });
         }
       });
