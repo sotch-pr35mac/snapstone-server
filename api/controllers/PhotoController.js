@@ -7,8 +7,8 @@
  */
 const Tesseract = require('tesseract.js');
 var path = require('path');
-var trad = path.resolve(__dirname, 'chi_tra.traineddata');
-var simp = path.resolve(__dirname, 'chi_sim.traineddata');
+//var trad = path.resolve(__dirname, 'chi_tra.traineddata');
+//var simp = path.resolve(__dirname, 'chi_sim.traineddata');
 var fs = require('fs');
 var Dictionary = require('./Dictionary/Dictionary.js');
 var dictionary = new Dictionary();
@@ -41,7 +41,7 @@ module.exports = {
           var photo = files[0].fd;
 
           Tesseract.create({
-            langPath: langPath
+            langPath:  __dirname
           }).recognize(photo, {
             lang: "chi_"+ langPref.substring(3)
           }).progress(function(p) {
