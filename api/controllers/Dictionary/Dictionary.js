@@ -155,13 +155,13 @@ class Dictionary {
 
             var fullString = "";
             for(var i = 0; i < results.length; i++) {
-                fullString += results[i][0].definitions[0];
+                fullString += results[i][0].definitions[0] + " ";
             }
 
             var fullResponse = {
                 translation: fullString
             };
-            
+
             callback(fullResponse);
         });
     }
